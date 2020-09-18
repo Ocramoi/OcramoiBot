@@ -1,2 +1,2 @@
 # OcramoiBot
-[PT] Bot ruim do telegram 🤠
+[PT] Bot ruim do telegram 🤠 (RIP)
