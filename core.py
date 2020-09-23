@@ -9,6 +9,8 @@ from unidecode import unidecode
 import USCrimes
 from bs4 import BeautifulSoup
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 TELEGRAM_TOKEN = os.getenv("TOKEN")
 SENT_1 = os.getenv("SENT_1")
