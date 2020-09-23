@@ -29,22 +29,22 @@ POPULACOES_TAM = len(POPULACOES)
 
 def sendRedditImg(bot, update, sub, arq, msgError):
     try:
-        postsArq = open("./{}.csv".format(arq), "r")
-        postsUsados = postsArq.readlines()
+        arqAp = open("./Posts/{}.csv".format(arq), "a+")
+        postsArq = open("./Posts/{}.csv".format(arq), "r")
+        postsUsados = postsArq.read().splitlines()
         postsArq.close()
         urlReddit = "https://www.reddit.com/r/{}.json?sort=hot".format(sub)
         resp = requests.request(method="GET", url=urlReddit, headers={'User-agent': 'ocramoidev'})
         respPosts = json.loads(resp.text)["data"]["children"]
         flag = True
         for post in respPosts:
-            if (not(hash(post["data"]["id"] + update.message.chat_id) in postsUsados)) and ((".jpg" in post["data"]["url"]) or (".png" in post["data"]["url"])):
+            if (not(str(hash("{}{}".format(post["data"]["id"], update.message.chat_id))) in postsUsados)) and ((".jpg" in post["data"]["url"]) or (".png" in post["data"]["url"])):
                 bot.sendPhoto(
                     chat_id=update.message.chat_id,
                     photo=post["data"]["url"]
                 )
                 flag = False
-                arqAp = open("./{}.csv".format(arq), "a+")
-                arqAp.write(hash(post["data"]["id"] + update.message.chat_id) + "\n")
+                arqAp.write(str(hash("{}{}".format(post["data"]["id"], update.message.chat_id))) + "\n")
                 break
         if flag:
             bot.send_message(
