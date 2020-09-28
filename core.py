@@ -58,6 +58,9 @@ def sendRedditImg(bot, update, sub, arq, msgError):
             text=msgError
         )
 
+def laborwave(bot, update):
+    sendRedditImg(bot, update, "LaborwaveAesthetics", "laborwave", "CLASS STRUGGLE")
+
 def liberals(bot, update):
     sendRedditImg(bot, update, "ToiletPaperUSA", "tpusa", "female orgasm is a liberal hoax")
 
@@ -249,7 +252,8 @@ def comandos(bot, update):
              "insta - Retorna as informações do post enviado\n"
              "ooer - NOW WITH 200k% MORE WEP!\n"
              "suuuuuuuu - memes may be difficult to understand for mere mortals\n"
-             "dearliberals - comando oficial do TPUSA"
+             "dearliberals - comando oficial do TPUSA\n"
+             "laborwave - C L A S S  S T R U G G L E"
     )
 
 
@@ -400,6 +404,9 @@ def main():
     )
     dispatcher.add_handler(
         CommandHandler('dearliberals', liberals)
+    )
+    dispatcher.add_handler(
+        CommandHandler('laborwave', laborwave)
     )
     updater.start_polling()
     updater.idle()
